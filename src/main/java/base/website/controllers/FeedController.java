@@ -22,9 +22,9 @@ public class FeedController {
     @Autowired
     FeedService feedService;
 
-    @RequestMapping(value = {"/", "/dashboard"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public ModelAndView dashboard() {
-        return new ModelAndView("dashboard");
+        return new ModelAndView("index");
     }
 
 //    @RequestMapping(value = "/feeds", method = RequestMethod.GET)

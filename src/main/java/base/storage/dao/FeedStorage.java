@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,6 +26,7 @@ public class FeedStorage {
         args.put("title", feed.getTitle());
         args.put("description", feed.getDescription());
         args.put("link", feed.getLink());
+        args.put("createdDate", (new Date()).toString());
         jdbcTemplate.update(INSERT_FEED, args);
     }
 }
