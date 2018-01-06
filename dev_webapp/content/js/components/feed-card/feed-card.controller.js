@@ -9,8 +9,11 @@
         'DashService'
     ];
 
-    function FeedController($mdSidenav, _request, _dash) {
+    function FeedController() {
         let vm = this;
 
+        vm.formatDate = function (millis) {
+            return (new Date(millis)).toLocaleString();
+        }
     }
 })();

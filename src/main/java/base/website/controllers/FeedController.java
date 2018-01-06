@@ -20,10 +20,17 @@ public class FeedController {
     @Autowired
     FeedService feedService;
 
+    @RequestMapping(value = "/feedEntries", method = RequestMethod.GET)
+    @ResponseBody
+    public AjaxResponse getFeedEntries(@RequestParam("feedBatchSize") int feedBatchSize,
+                                       @RequestParam("feedBatchNumber") int feedBatchNumber) {
+        return AjaxResponse.buildSuccessResponse(feedService.getDisplayableFeedEntries(feedBatchSize, feedBatchNumber));
+    }
+
     @RequestMapping(value = "/feeds", method = RequestMethod.GET)
     @ResponseBody
     public AjaxResponse getFeeds() {
-        return AjaxResponse.buildSuccessResponse(feedService.getAllFeedEntries("someUser"));
+        return AjaxResponse.buildSuccessResponse(feedService.getFeedsForUser());
     }
 
     @RequestMapping(value = {"/feeds"}, method = RequestMethod.POST)
@@ -36,5 +43,12 @@ public class FeedController {
             e.printStackTrace();
             return AjaxResponse.buildErrorResponse("Failed");
         }
+    }
+
+    @RequestMapping(value = {"/feeds"}, method = RequestMethod.DELETE)
+    @ResponseBody
+    public AjaxResponse removeFeed(@RequestParam("feed_link") String feedLink) {
+        feedService.deleteFeed(feedLink);
+        return AjaxResponse.buildSuccessResponse("Succeeded");
     }
 }

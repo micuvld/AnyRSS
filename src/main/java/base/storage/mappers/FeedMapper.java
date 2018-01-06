@@ -15,6 +15,7 @@ public class FeedMapper implements RowMapper<Feed> {
     @Override
     public Feed mapRow(ResultSet resultSet, int i) throws SQLException {
         return Feed.builder()
+                .id(resultSet.getInt("id"))
                 .title(resultSet.getString("title"))
                 .link(resultSet.getString("link"))
                 .createdDate(resultSet.getTimestamp("createdDate"))

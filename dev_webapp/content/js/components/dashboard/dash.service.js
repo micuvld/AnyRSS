@@ -9,14 +9,34 @@
     ];
 
     function DashService(_request) {
-        let GET_FEEDS_URL = "/feeds";
+        let FEED_ENTRIES_URL = "/feedEntries";
+        let FEEDS_URL = "/feeds";
 
         return {
-            getFeeds: getFeeds
+            getFeedEntries: getFeedEntries,
+            getFeeds: getFeeds,
+            removeFeed: removeFeed
         };
 
+        function getFeedEntries(feedBatchSize, feedBatchNumber) {
+            let params = {
+                feedBatchSize: feedBatchSize,
+                feedBatchNumber: feedBatchNumber
+            };
+
+            return _request.get(FEED_ENTRIES_URL, params);
+        }
+
         function getFeeds() {
-            return _request.get(GET_FEEDS_URL);
+            return _request.get(FEEDS_URL);
+        }
+
+        function removeFeed(feedLink) {
+            let params = {
+                feed_link: feedLink
+            };
+
+            return _request.remove(FEEDS_URL, params);
         }
     }
 })();

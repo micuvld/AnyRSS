@@ -1,8 +1,7 @@
 <div id="dashboard_container" layout="row" layout-wrap>
     <!--LEFT MENU-->
-    <md-content flex="30" id="left_panel">
-        <div class="md-sidenav-left"
-             md-whiteframe="4">
+    <div id="left_panel" style="width:30%; position: fixed">
+        <div class="md-sidenav-left">
 
             <md-toolbar class="md-theme-indigo">
                 <h1 class="md-toolbar-tools">AnyRSS</h1>
@@ -19,17 +18,32 @@
                                ng-click="vm.storeFeed()">ADD
                     </md-button>
                 </div>
+
+                <div>
+                    <md-subheader class="md-no-sticky">Your feeds</md-subheader>
+                    <md-content style="height:300px">
+                        <md-list-item class="secondary-button-padding" ng-repeat="feed in vm.feeds">
+                            <p>{{feed.title}}</p>
+                            <md-button class="md-secondary" ng-click="vm.removeFeed(feed.link)">Delete</md-button>
+                            <md-divider></md-divider>
+                        </md-list-item>
+                    </md-content>
+                </div>
             </md-content>
         </div>
-    </md-content>
+    </div>
 
     <!--RIGHT PANEL-->
-    <div flex="70" layout="column" layout-align="start center">
+    <div layout="column" layout-align="start center" style="position: absolute;width:70%;right:0; margin-bottom:10px">
         <!--FEEDS-->
-        <md-content id="card-container" layout-padding style="position:absolute; overflow-y: scroll; height:98%">
-            <div class="feedEntry" ng-repeat="feedEntry in vm.feeds">
+        <md-content id="card-container" layout-padding style="overflow-y: scroll; height:98%">
+            <div class="feedEntry" ng-repeat="feedEntry in vm.feedEntries">
                 <feed-card feed-entry="feedEntry"></feed-card>
             </div>
         </md-content>
+
+        <div layout-align="center center">
+            <md-button class="md-raised md-primary" ng-click="vm.loadMoreFeedEntries()">LOAD MORE</md-button>
+        </div>
     </div>
 </div>

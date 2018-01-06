@@ -2,6 +2,7 @@ package base.website.services;
 
 import base.rss.FeedReader;
 import base.storage.dao.FeedStorage;
+import base.storage.entities.DisplayableFeedEntry;
 import base.storage.entities.Feed;
 import base.storage.entities.FeedEntry;
 import base.storage.mappers.FeedEntryMapper;
@@ -23,22 +24,6 @@ public class FeedService {
 
     @Autowired
     FeedEntryMapper feedEntryMapper;
-//
-//    public void storeFeedEntry(String feedURL) throws IOException, FeedException {
-//        //download feed
-//        SyndFeed fetchedFeed = FeedReader.getFeed(feedURL);
-//        //create feed object
-//        //TODO create mapper for syndFeed to FeedEntry
-//
-//        List<SyndEntry> feedList =  fetchedFeed.getEntries();
-//
-//        for (SyndEntry syndFeed : feedList) {
-//            FeedEntry feedEntry = feedMapper.getFeedFromSyndEntry(syndFeed);
-//
-//            //store feedEntry using storage
-//            feedStorage.storeFeed(feedEntry);
-//        }
-//    }
 
     public void storeFeed(String feedURL) throws IOException, FeedException {
         SyndFeed fetchedFeed = FeedReader.getFeed(feedURL);
@@ -54,7 +39,15 @@ public class FeedService {
         feedStorage.storeFeed(feed);
     }
 
-    public List<FeedEntry> getAllFeedEntries(String user_id) {
-        return feedStorage.getAllFeedEntries(user_id);
+    public List<DisplayableFeedEntry> getDisplayableFeedEntries(int feedBatchSize, int feedBatchNumber) {
+        return feedStorage.getDisplayableFeedEntries(feedBatchSize, feedBatchNumber);
+    }
+
+    public List<Feed> getFeedsForUser() {
+        return feedStorage.getFeedsForUser();
+    }
+
+    public void deleteFeed(String feedLink) {
+        feedStorage.deleteFeed(feedLink);
     }
 }

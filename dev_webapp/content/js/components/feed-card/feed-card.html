@@ -1,10 +1,21 @@
-<div class="feed-card-container" layout="column" style="height:150px; padding:10px">
+<div class="feed-card-container" layout="column">
     <div style="height:40px" layout="row">
-        <b>{{vm.feedEntry.title}}</b>
+        <div style="        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+width:740px">
+            <b>{{vm.feedEntry.title}}</b>
+        </div>
         <div style="width:25px; position:absolute; right:25px"
              md-whiteframe="4">
             <a href="{{vm.feedEntry.link}}" target="_blank"><i class="material-icons">open_in_new</i></a>
         </div>
     </div>
-    <div style="height:110px">{{vm.feedEntry.description}}</div>
+    <truncated-span text="{{vm.feedEntry.description}}" length="280"
+                    style="word-break:break-all; height:110px; width:740px"></truncated-span>
+    <div style="height:20px">
+        <span>{{vm.formatDate(vm.feedEntry.pubDate)}}</span>
+        <span style="float:right"><b>Source: </b>{{vm.feedEntry.parentFeedTitle}}</span>
+    </div>
 </div>

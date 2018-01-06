@@ -9,7 +9,8 @@
     function RequestService($http) {
         return {
             get: get,
-            post: post
+            post: post,
+            remove: remove
         };
 
         function get(url, params) {
@@ -26,6 +27,14 @@
                 params: params,
                 url: url,
                 data: data
+            })
+        }
+
+        function remove(url, params) {
+            return $http({
+                method: 'DELETE',
+                params: params,
+                url: url,
             })
         }
     }
