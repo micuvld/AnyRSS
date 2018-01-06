@@ -1,9 +1,35 @@
-<md-content style="width:700px"
-            md-theme="docs-dark" layout-padding>
-    <md-input-container md-no-float class="md-block">
-        <input ng-model="vm.feedToStore"
-               placeholder="Input your RSS feed URL">
-    </md-input-container>
+<div id="dashboard_container" layout="row" layout-wrap>
+    <!--LEFT MENU-->
+    <md-content flex="30" id="left_panel">
+        <div class="md-sidenav-left"
+             md-whiteframe="4">
 
-    <md-button class="md-raised" ng-click="vm.storeFeed()">Button</md-button>
-</md-content>
+            <md-toolbar class="md-theme-indigo">
+                <h1 class="md-toolbar-tools">AnyRSS</h1>
+            </md-toolbar>
+
+            <md-content layout-padding layout="column">
+                <div id="input" md-theme="docs-dark" layout-padding layout="row" layout-align="center center">
+                    <md-input-container style="margin-top:50px">
+                        <input ng-model="vm.feedToStore"
+                               placeholder="Input RSS feed URL">
+                    </md-input-container>
+
+                    <md-button style="height:auto; width:auto" class="md-raised md-primary"
+                               ng-click="vm.storeFeed()">ADD
+                    </md-button>
+                </div>
+            </md-content>
+        </div>
+    </md-content>
+
+    <!--RIGHT PANEL-->
+    <div flex="70" layout="column" layout-align="start center">
+        <!--FEEDS-->
+        <md-content id="card-container" layout-padding style="position:absolute; overflow-y: scroll; height:98%">
+            <div class="feedEntry" ng-repeat="feedEntry in vm.feeds">
+                <feed-card feed-entry="feedEntry"></feed-card>
+            </div>
+        </md-content>
+    </div>
+</div>

@@ -1,0 +1,6 @@
+.feed-card-container {
+    width: 800px !important;
+    height: 100px !important;
+    border: solid thick #3F51B5;
+    margin-bottom: 20px;
+}

@@ -1,6 +1,5 @@
 package base.website.controllers;
 
-import base.storage.dao.FeedStorage;
 import base.utils.AjaxResponse;
 import base.website.services.FeedService;
 import com.sun.syndication.io.FeedException;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
 
@@ -22,16 +20,11 @@ public class FeedController {
     @Autowired
     FeedService feedService;
 
-    @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
-    public ModelAndView dashboard() {
-        return new ModelAndView("index");
+    @RequestMapping(value = "/feeds", method = RequestMethod.GET)
+    @ResponseBody
+    public AjaxResponse getFeeds() {
+        return AjaxResponse.buildSuccessResponse(feedService.getAllFeedEntries("someUser"));
     }
-
-//    @RequestMapping(value = "/feeds", method = RequestMethod.GET)
-//    @ResponseBody
-//    public String getFeeds() {
-//
-//    }
 
     @RequestMapping(value = {"/feeds"}, method = RequestMethod.POST)
     @ResponseBody

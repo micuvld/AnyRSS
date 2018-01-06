@@ -1,0 +1,10 @@
+<div class="feed-card-container" layout="column" style="height:150px; padding:10px">
+    <div style="height:40px" layout="row">
+        <b>{{vm.feedEntry.title}}</b>
+        <div style="width:25px; position:absolute; right:25px"
+             md-whiteframe="4">
+            <a href="{{vm.feedEntry.link}}" target="_blank"><i class="material-icons">open_in_new</i></a>
+        </div>
+    </div>
+    <div style="height:110px">{{vm.feedEntry.description}}</div>
+</div>

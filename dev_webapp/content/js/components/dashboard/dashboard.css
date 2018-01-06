@@ -1,0 +1,15 @@
+#dashboard_container {
+    height: 100%;
+}
+
+#left_panel {
+    height: 100%;
+}
+
+#card-container::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    height: 100%;
+}

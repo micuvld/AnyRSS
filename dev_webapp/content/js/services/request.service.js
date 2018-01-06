@@ -8,20 +8,25 @@
 
     function RequestService($http) {
         return {
+            get: get,
             post: post
         };
 
+        function get(url, params) {
+            return $http({
+                method: 'GET',
+                params: params,
+                url: url
+            })
+        }
+
         function post(url, params, data) {
-            $http({
+            return $http({
                 method: 'POST',
                 params: params,
                 url: url,
                 data: data
-            }).then(function successCallback(response) {
-                alert(response);
-            }, function errorCallback(response) {
-                alert(response);
-            });
+            })
         }
     }
 })();

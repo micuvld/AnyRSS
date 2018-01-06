@@ -26,7 +26,7 @@ module.exports = function (grunt) {
                 dest: LIVE_PATH + '/lib/dependencies.js'
             },
             css: {
-                src: [DEV_PATH + '/lib/css/*'],
+                src: [DEV_PATH + '/**/*'],
                 dest: LIVE_PATH + '/lib/dependencies.css'
             }
         },

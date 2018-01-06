@@ -8,8 +8,12 @@ import java.util.Date;
 
 @Data
 @Builder
-public class Feed {
-    private String link;
+public class FeedEntry {
+    private Integer id;
     private String title;
-    private Timestamp createdDate;
+    private String description;
+    private String link;
+    private Date createdDate;
+    private Date pubDate;
+
 }

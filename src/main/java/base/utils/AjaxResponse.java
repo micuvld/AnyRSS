@@ -7,13 +7,13 @@ import lombok.Data;
 @Builder
 public class AjaxResponse {
     boolean isError;
-    String response;
+    Object response;
 
-    public static AjaxResponse buildSuccessResponse(String response) {
+    public static AjaxResponse buildSuccessResponse(Object response) {
         return builder().isError(false).response(response).build();
     }
 
-    public static AjaxResponse buildErrorResponse(String response) {
+    public static AjaxResponse buildErrorResponse(Object response) {
         return builder().isError(true).response(response).build();
     }
 }
