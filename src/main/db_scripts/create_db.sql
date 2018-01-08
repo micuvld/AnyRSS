@@ -1,26 +1,31 @@
-CREATE TABLE anyrss.feed_entries (
+CREATE TABLE feed_entries
+(
   title       VARCHAR(250)  NOT NULL,
   description VARCHAR(1000) NOT NULL,
-  link        VARCHAR(1000) NOT NULL PRIMARY KEY,
-  createdDate DATETIME
+  link        VARCHAR(1000) NOT NULL,
+  createdDate DATETIME      NULL,
+  pubDate     DATETIME      NOT NULL,
+  parent_feed INT           NULL,
+  PRIMARY KEY (link, pubDate)
 );
 
-CREATE TABLE users
-(
-  user_id VARCHAR(20),
-  pass    VARCHAR(20)
-);
+CREATE INDEX feed_entries_feeds_id_fk
+  ON feed_entries (parent_feed);
 
 CREATE TABLE feeds
 (
-  link        VARCHAR(2048) NOT NULL PRIMARY KEY,
-  title       VARCHAR(1024),
-  createdDate DATETIME
+  id          INT AUTO_INCREMENT,
+  link        VARCHAR(1024) NOT NULL
+    PRIMARY KEY,
+  title       VARCHAR(1024) NULL,
+  createdDate DATETIME      NULL,
+  CONSTRAINT id
+  UNIQUE (id)
 );
 
-CREATE TABLE user_feed
-(
-  id      INT PRIMARY KEY AUTO_INCREMENT,
-  user_id VARCHAR(20),
-  feed_id INT
-);
+ALTER TABLE feed_entries
+  ADD CONSTRAINT feed_entries_feeds_id_fk
+FOREIGN KEY (parent_feed) REFERENCES feeds (id)
+  ON UPDATE CASCADE
+  ON DELETE CASCADE;
+
