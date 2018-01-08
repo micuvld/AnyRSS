@@ -1,4 +1,4 @@
-package base.schedule.jobs;
+package base.schedule;
 
 import base.rss.FeedReader;
 import base.storage.dao.FeedStorage;
@@ -9,7 +9,6 @@ import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.io.FeedException;
 import lombok.extern.slf4j.Slf4j;
-import org.quartz.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -29,8 +28,8 @@ public class FetchRSSJob {
     FeedEntryMapper feedEntryMapper;
 
     @Scheduled(fixedRate = 30000) //30 sedonds
-    protected void execute() throws JobExecutionException {
-        List<Feed> rssFeedURLs = feedStorage.getFeedsForUser();
+    protected void execute() {
+        List<Feed> rssFeedURLs = feedStorage.getAllFeeds();
         List<FeedEntry> feedEntries = new ArrayList<>();
 
         for (Feed feed : rssFeedURLs) {

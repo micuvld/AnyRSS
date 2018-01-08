@@ -8,31 +8,4 @@
 
 
     <mvc:resources mapping="/public/**" location="public/"/>
-
-    <!--<bean name="fetchRSSJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">-->
-    <!--<property name="jobClass" value="base.schedule.jobs.FetchRSSJob"/>-->
-    <!--</bean>-->
-
-    <!--<bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">-->
-    <!--&lt;!&ndash; see the example of method invoking job above &ndash;&gt;-->
-    <!--<property name="jobDetail" ref="fetchRSSJob"/>-->
-    <!--&lt;!&ndash; 1 seconds &ndash;&gt;-->
-    <!--<property name="startDelay" value="1000"/>-->
-    <!--&lt;!&ndash; repeat every 5 seconds &ndash;&gt;-->
-    <!--<property name="repeatInterval" value="5000"/>-->
-    <!--</bean>-->
-
-    <!--<bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">-->
-    <!--<property name="jobDetails">-->
-    <!--<list>-->
-    <!--<ref bean="fetchRSSJob" />-->
-    <!--</list>-->
-    <!--</property>-->
-
-    <!--<property name="triggers">-->
-    <!--<list>-->
-    <!--<ref bean="simpleTrigger" />-->
-    <!--</list>-->
-    <!--</property>-->
-    <!--</bean>-->
 </beans>

@@ -4,7 +4,6 @@ import base.rss.FeedReader;
 import base.storage.dao.FeedStorage;
 import base.storage.entities.DisplayableFeedEntry;
 import base.storage.entities.Feed;
-import base.storage.entities.FeedEntry;
 import base.storage.mappers.FeedEntryMapper;
 import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.io.FeedException;
@@ -44,7 +43,7 @@ public class FeedService {
     }
 
     public List<Feed> getFeedsForUser() {
-        return feedStorage.getFeedsForUser();
+        return feedStorage.getAllFeeds();
     }
 
     public void deleteFeed(String feedLink) {

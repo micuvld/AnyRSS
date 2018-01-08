@@ -114,7 +114,7 @@ public class FeedStorage {
         return jdbcTemplate.query(GET_ALL_FEED_ENTRIES, feedEntryMapper);
     }
 
-    public List<Feed> getFeedsForUser() {
+    public List<Feed> getAllFeeds() {
         return jdbcTemplate.query(GET_ALL_FEEDS, feedMapper);
     }
 
